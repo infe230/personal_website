@@ -26,6 +26,10 @@
   }
 }
  
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   @apply bg-background text-foreground;
   background: linear-gradient(
@@ -35,11 +39,71 @@ body {
   ) rgb(15, 23, 42);
 }
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(3, 7, 18, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(103, 232, 249, 0.3);
+  border-radius: 6px;
+  border: 3px solid rgba(3, 7, 18, 0.8);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(103, 232, 249, 0.5);
+}
+
 @layer components {
   .water-text-effect {
     @apply text-cyan-300;
     text-shadow: 0 0 5px rgba(103, 232, 249, 0.7), 0 0 10px rgba(103, 232, 249, 0.5);
     animation: water-ripple 3s ease-in-out infinite;
+  }
+
+  .timeline-container {
+    @apply relative max-w-4xl mx-auto;
+  }
+
+  .timeline-container::after {
+    content: '';
+    @apply absolute top-0 left-1/2 w-0.5 h-full bg-cyan-300 -translate-x-1/2;
+    box-shadow: 0 0 10px rgba(103, 232, 249, 0.5);
+  }
+
+  .timeline-item {
+    @apply relative w-full flex justify-center mb-16;
+  }
+
+  .timeline-content {
+    @apply relative w-[45%] bg-white bg-opacity-10 p-6 rounded-lg shadow-lg;
+    backdrop-filter: blur(10px);
+  }
+
+  .timeline-item:nth-child(odd) .timeline-content {
+    @apply mr-auto;
+  }
+
+  .timeline-item:nth-child(even) .timeline-content {
+    @apply ml-auto;
+  }
+
+  .timeline-dot {
+    @apply absolute top-6 left-1/2 w-4 h-4 bg-cyan-300 rounded-full -translate-x-1/2 z-10;
+    box-shadow: 0 0 10px rgba(103, 232, 249, 0.7);
+  }
+
+  .company-logo-cube {
+    transform: perspective(1000px) rotateY(25deg) rotateX(10deg);
+    transition: transform 0.3s ease;
+  }
+
+  .company-logo-cube:hover {
+    transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
   }
 
   @keyframes water-ripple {
@@ -48,6 +112,22 @@ body {
     }
     50% {
       text-shadow: 0 0 10px rgba(103, 232, 249, 0.9), 0 0 20px rgba(103, 232, 249, 0.7);
+    }
+  }
+
+  .hover-bounce {
+    animation: bounce 2s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-20px);
+    }
+    60% {
+      transform: translateY(-10px);
     }
   }
 }
