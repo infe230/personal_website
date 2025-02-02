@@ -37,7 +37,7 @@ export default function Home() {
         <section className="h-screen flex flex-col items-center justify-center">
           <div className="text-center">
             <h1 className={`text-6xl mb-4 ${waterFont.className} water-text-effect`}>Austin Kuo</h1>
-            <p className="text-xl font-light tracking-wide text-cyan-100 mb-8">Full Stack Developer</p>
+            <p className="text-xl font-light tracking-wide text-cyan-100 mb-8">Welcome to my website/resume</p>
             <button 
               onClick={scrollToContent}
               className={`text-cyan-300 transition-opacity duration-500 ${showBounce ? 'opacity-100' : 'opacity-0'}`}
